@@ -12,11 +12,11 @@ set guifont=Consolas:h10:cANSI
 set helplang=En
 set window=73
 map <C-o> :browse confirm edit <Cr>
+set guifont=Monospace\ 9
 
 """""""""""""""""""""""""""""""""""""
 "External plugins / Syntax files
 """""""""""""""""""""""""""""""""""""
-source ~/.vim/comments.vim
 au BufNewFile,BufRead *.as setf actionscript
 
 "Syntax higlighting rules
@@ -30,9 +30,9 @@ set nu
 
 set hlsearch
 "Indent handling
-set tabstop=3
-set softtabstop=3
-set shiftwidth=3
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 set autoindent
 "smart indent not smart enough - management
@@ -136,3 +136,4 @@ endfunction
 "inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 command PP %!python -mjson.tool
+nmap <c-space> :noh<cr>
