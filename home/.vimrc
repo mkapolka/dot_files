@@ -8,11 +8,11 @@ nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),
 let &cpo=s:cpo_save
 unlet s:cpo_save
 set background=dark
-set guifont=Consolas:h10:cANSI
 set helplang=En
 set window=73
 map <C-o> :browse confirm edit <Cr>
-set guifont=Monospace\ 9
+
+set guifont=ttyp014:h14
 
 """""""""""""""""""""""""""""""""""""
 "External plugins / Syntax files
@@ -64,7 +64,6 @@ vmap <C-Insert> "*y
 
 "Tabs
 map <C-t> :tabnew<Cr>
-map <C-w> :tabclose<Cr>
 map K :tabn<Enter>
 map J :tabp<Enter>
 "Little switcheroo inspired by help page (see :h Y)
@@ -135,5 +134,5 @@ endfunction
 
 "inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
-command PP %!python -mjson.tool
+command! PP %!python -mjson.tool
 nmap <c-space> :noh<cr>
