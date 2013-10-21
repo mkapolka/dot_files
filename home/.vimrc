@@ -1,3 +1,6 @@
+"Pathogen
+execute pathogen#infect()
+
 "Gvim specific settings
 version 6.0
 if &cp | set nocp | endif
@@ -10,23 +13,53 @@ unlet s:cpo_save
 set background=dark
 set helplang=En
 set window=73
-map <C-o> :browse confirm edit <Cr>
+"Default <c-o> actually owns and this is useless?
+"map <C-o> :browse confirm edit <Cr>
 
 set guifont=ttyp014:h14
 
 """""""""""""""""""""""""""""""""""""
 "External plugins / Syntax files
 """""""""""""""""""""""""""""""""""""
+"Flake8
+"autocmd BufWritePost *.py call Flake8()
+"let g:flake8_ignore="E501"
+
+"Syntastic
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=E501'
+let g:syntastic_always_populate_loc_list=1
+
+command! CheckPy call SyntasticCheckPython()
+function! SyntasticCheckPython()
+    let old_checkers = g:syntastic_python_checkers
+    let g:syntastic_python_checkers = ['flake8', 'pylint', 'python']
+    SyntasticCheck
+    let g:syntastic_python_checkers = old_checkers
+endfunction
+
 au BufNewFile,BufRead *.as setf actionscript
 
 "Syntax higlighting rules
 syntax enable
+
+"Sienna Options
 let g:sienna_style='dark'
-color sienna
+"Zenburn Options
+let g:zenburn_high_Contrast=1
+let g:zenburn_old_Visual=1
+
+color zenburn
 "Force syntax highlighting to work for the entire file
 "Turn this off if things get too slow
 syn sync fromstart
 set nu
+
+"Status lines and similar things
+set ruler
+set laststatus=2
+set statusline=%<%f\ %h%m%r\ %y\ #%n%=%{v:register}\ %-14.(%l,%c%V%)\ %P
+set showcmd
 
 set hlsearch
 "Indent handling
@@ -48,14 +81,27 @@ let g:xml_syntax_folding = 1
 set foldlevel=1
 set foldnestmax=2
 
+"Split settings
+set splitbelow
+set splitright
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 set autochdir
 
 "Sets the clipboard buffer to the unnamed (default) buffer
-set clipboard=unnamed
+set clipboard="*
 
 """""""""""""""""""""""""""""
 " BINDSBINDSBINDSBINDS
 """""""""""""""""""""""""""""
+
+"Quickfix
+nmap qfn :cn<cr>
+nmap qfp :cp<cr>
+nmap qfc :cc<cr>
 
 "Regular vim OK
 vmap <C-Del> "*d
@@ -78,8 +124,8 @@ map ]] j0[[%/{<CR>
 map [] k$][%?}<CR>
 
 "Ben and Jerry's 'Fatfinger kludge'
-:command! W w
-:command! E e
+command! W w
+command! E e
 
 "Shift-Delete and backspace work like expected
 imap <S-Delete> <Esc>lcw
@@ -103,7 +149,11 @@ inoremap {{     {{}}<Esc>hi
 inoremap {}     {}
 
 "Automatic square block filling
+inoremap [      []<Left>
 inoremap [<CR>  [<CR>]<Esc>O<Tab>
+inoremap [<S-CR>  [<CR>]<Esc>O<Tab>
+inoremap [[     [[]]<Esc>hi
+inoremap []     []
 
 "Surround visually selected text in {}
 "vnoremap <C-{> 
@@ -135,4 +185,12 @@ endfunction
 "inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 command! PP %!python -mjson.tool
+command! PPX %!xmllint --format - 2>/dev/null
 nmap <c-space> :noh<cr>
+
+command! Max call Maximize()
+
+function! Maximize()
+    set columns=999
+    set lines=999
+endfunction
