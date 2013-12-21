@@ -74,7 +74,9 @@ set autoindent
 set bs=indent,eol,start
 set cpoptions+=I
 set nowrap
-set guioptions+=b;
+" b = Bottom scroll bar
+" c = Console prompt popups (great for OSX since you can't select options w/ keyboard)
+set guioptions+=bc
 
 "Folding settings
 let g:xml_syntax_folding = 1
@@ -110,8 +112,8 @@ vmap <C-Insert> "*y
 
 "Tabs
 map <C-t> :tabnew<Cr>
-map K :tabn<Enter>
-map J :tabp<Enter>
+map J gt
+map K gT
 "Little switcheroo inspired by help page (see :h Y)
 map Y y$
 "Windows style ctrl-backspace
@@ -186,6 +188,7 @@ endfunction
 
 command! PP %!python -mjson.tool
 command! PPX %!xmllint --format - 2>/dev/null
+command! PPJ %!js-beautify.js -f -
 nmap <c-space> :noh<cr>
 
 command! Max call Maximize()
