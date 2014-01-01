@@ -70,8 +70,8 @@ set autoindent
 set bs=indent,eol,start
 set cpoptions+=I
 set nowrap
-
-"b: bottom scrollbar c: console dialog (useful in osx)
+" b = Bottom scroll bar
+" c = Console prompt popups (great for OSX since you can't select options w/ keyboard)
 set guioptions+=bc
 "a: Autoselect, m: menu bar, T: toolbar
 set guioptions-=amT
@@ -107,8 +107,8 @@ vmap <C-Insert> "*y
 
 "Tabs
 map <C-t> :tabnew<Cr>
-map J :tabn<Enter>
-map K :tabp<Enter>
+map J gt
+map K gT
 "Little switcheroo inspired by help page (see :h Y)
 map Y y$
 "Windows style ctrl-backspace
@@ -180,6 +180,7 @@ endfunction
 
 command! PP %!python -mjson.tool
 command! PPX %!xmllint --format - 2>/dev/null
+command! PPJ %!js-beautify.js -f -
 nmap <C-Space> :noh<cr>
 inoremap <C-@> <c-space>
 
