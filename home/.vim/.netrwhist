@@ -1,9 +1,9 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/usr/local/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0'
-let g:netrw_dirhist_2='/usr/local/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib'
-let g:netrw_dirhist_3='/usr/local/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support'
-let g:netrw_dirhist_4='/usr/local/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext'
-let g:netrw_dirhist_5='/usr/local/lib/ruby/gems/2.0.0/gems/activesupport-4.0.0/lib/active_support/core_ext/class'
-let g:netrw_dirhist_6='/Users/mkapolka/art/monastery_test/lib/templates'
-let g:netrw_dirhist_7='/Users/mkapolka/art/monastery_test/javascript'
+let g:netrw_dirhist_1='/home/mkapolka/.homesick/repos/dot_files/.git'
+let g:netrw_dirhist_2='/home/mkapolka/.homesick/repos/dot_files/home/.vim'
+let g:netrw_dirhist_3='/home/mkapolka/.homesick/repos/dot_files/home/.vim/bundle'
+let g:netrw_dirhist_4='/home/mkapolka/.homesick/repos/dot_files/home/.vim/bundle/colorscheme'
+let g:netrw_dirhist_5='/home/mkapolka/.homesick/repos/dot_files/home/.vim/bundle'
+let g:netrw_dirhist_6='/home/mkapolka/.homesick/repos/dot_files/home/.vim/bundle/colorschemes'
+let g:netrw_dirhist_7='/home/mkapolka/.homesick/repos/dot_files/home/.vim/bundle/colorschemes/colors'

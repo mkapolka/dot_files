@@ -16,15 +16,11 @@ set window=73
 "Default <c-o> actually owns and this is useless?
 "map <C-o> :browse confirm edit <Cr>
 
-set guifont=ttyp014:h14
+set guifont=Ttyp0
 
 """""""""""""""""""""""""""""""""""""
 "External plugins / Syntax files
 """""""""""""""""""""""""""""""""""""
-"Flake8
-"autocmd BufWritePost *.py call Flake8()
-"let g:flake8_ignore="E501"
-
 "Syntastic
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_flake8_args='--ignore=E501'
@@ -74,7 +70,11 @@ set autoindent
 set bs=indent,eol,start
 set cpoptions+=I
 set nowrap
-set guioptions+=b;
+
+"b: bottom scrollbar c: console dialog (useful in osx)
+set guioptions+=bc
+"a: Autoselect, m: menu bar, T: toolbar
+set guioptions-=amT
 
 "Folding settings
 let g:xml_syntax_folding = 1
@@ -90,9 +90,6 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 set autochdir
-
-"Sets the clipboard buffer to the unnamed (default) buffer
-set clipboard="*
 
 """""""""""""""""""""""""""""
 " BINDSBINDSBINDSBINDS
@@ -110,8 +107,8 @@ vmap <C-Insert> "*y
 
 "Tabs
 map <C-t> :tabnew<Cr>
-map K :tabn<Enter>
-map J :tabp<Enter>
+map J :tabn<Enter>
+map K :tabp<Enter>
 "Little switcheroo inspired by help page (see :h Y)
 map Y y$
 "Windows style ctrl-backspace
@@ -149,14 +146,11 @@ inoremap {{     {{}}<Esc>hi
 inoremap {}     {}
 
 "Automatic square block filling
-inoremap [      []<Left>
+"inoremap [      []<Left>
 inoremap [<CR>  [<CR>]<Esc>O<Tab>
-inoremap [<S-CR>  [<CR>]<Esc>O<Tab>
-inoremap [[     [[]]<Esc>hi
-inoremap []     []
-
-"Surround visually selected text in {}
-"vnoremap <C-{> 
+"inoremap [<S-CR>  [<CR>]<Esc>O<Tab>
+"inoremap [[     [[]]<Esc>hi
+"inoremap []     []
 
 "Changes gf to open the highlighted file even if it doesn't exist yet
 map gf :e <cfile><CR>
@@ -186,7 +180,8 @@ endfunction
 
 command! PP %!python -mjson.tool
 command! PPX %!xmllint --format - 2>/dev/null
-nmap <c-space> :noh<cr>
+nmap <C-Space> :noh<cr>
+inoremap <C-@> <c-space>
 
 command! Max call Maximize()
 

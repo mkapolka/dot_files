@@ -1,9 +1,7 @@
-set guioptions+=mTB
-map u <c-u>
-map d <c-d>
-map -builtin K gt
-map -builtin J gT
-map -builtin x :tabc<cr>
-map <c-t> :undo<cr>
-map -builtin U u
-set hintkeys=asdfghjkl
+noremap u <c-u>
+noremap d <c-d>
+noremap J gt
+noremap K gT
+noremap x d
+noremap U u
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
