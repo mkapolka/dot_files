@@ -18,6 +18,9 @@ set window=73
 
 set guifont=ttyp014:h14
 
+" Leader key (needs to come first because other binds need it to be so)
+let mapleader = ","
+
 """""""""""""""""""""""""""""""""""""
 "External plugins / Syntax files
 """""""""""""""""""""""""""""""""""""
@@ -37,6 +40,16 @@ function! SyntasticCheckPython()
     SyntasticCheck
     let g:syntastic_python_checkers = old_checkers
 endfunction
+
+" Ctrl P
+" Run at vim command line
+" :helptags ~/.vim/bundle/ctrlp.vim/doc
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_working_path_mode = 'ra'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntax Highlighting options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 au BufNewFile,BufRead *.as setf actionscript
 
@@ -86,10 +99,6 @@ set foldnestmax=2
 "Split settings
 set splitbelow
 set splitright
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 set autochdir
 
@@ -99,6 +108,12 @@ set clipboard="*
 """""""""""""""""""""""""""""
 " BINDSBINDSBINDSBINDS
 """""""""""""""""""""""""""""
+
+" Move between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 "Quickfix
 nmap qfn :cn<cr>
