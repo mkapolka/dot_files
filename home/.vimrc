@@ -70,11 +70,14 @@ set autoindent
 set bs=indent,eol,start
 set cpoptions+=I
 set nowrap
-" b = Bottom scroll bar
 " c = Console prompt popups (great for OSX since you can't select options w/ keyboard)
-set guioptions+=bc
-"a: Autoselect, m: menu bar, T: toolbar
-set guioptions-=amT
+set guioptions+=c
+"a: Autoselect
+set guioptions-=a
+"m: Menu bar
+set guioptions-=m
+"T: Tool bar
+set guioptions-=T
 
 "Folding settings
 let g:xml_syntax_folding = 1
