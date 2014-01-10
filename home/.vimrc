@@ -19,7 +19,7 @@ set window=73
 set guifont=ttyp014:h14
 
 " Leader key (needs to come first because other binds need it to be so)
-let mapleader = ","
+let mapleader = "\\"
 
 """""""""""""""""""""""""""""""""""""
 "External plugins / Syntax files
@@ -105,6 +105,9 @@ set autochdir
 "Sets the clipboard buffer to the unnamed (default) buffer
 set clipboard="*
 
+"Ignore .pyc files when expanding wildcards
+set wildignore+=*.pyc
+
 """""""""""""""""""""""""""""
 " BINDSBINDSBINDSBINDS
 """""""""""""""""""""""""""""
@@ -151,12 +154,10 @@ imap <S-Backspace> <Esc>cb
 "Ctrl-S save bind
 map <C-s> :w<CR>
 imap <C-s> <Esc>:w<CR>a
+nnoremap <silent><leader>s :w<CR>
 
 "Ctrl-N new bind
 "nmap <C-n> :silent !gvim<Cr>
-
-"set shell=C:\\cygwin\\bin\\mintty.exe
-"set shellcmdflag=-
 
 "Automatic Curly Block filling
 inoremap {      {}<Left>
@@ -166,11 +167,19 @@ inoremap {{     {{}}<Esc>hi
 inoremap {}     {}
 
 "Automatic square block filling
-inoremap [      []<Left>
 inoremap [<CR>  [<CR>]<Esc>O<Tab>
-inoremap [<S-CR>  [<CR>]<Esc>O<Tab>
-inoremap [[     [[]]<Esc>hi
-inoremap []     []
+
+function! NumberToggle()
+    if(&relativenumber)
+        set norelativenumber
+        set number
+    else
+        set rnu
+    endif
+endfunction
+
+nnoremap <silent><Leader>r :call NumberToggle()<CR>
+vnoremap <silent><Leader>r :call NumberToggle()<CR>
 
 "Surround visually selected text in {}
 "vnoremap <C-{> 
@@ -204,7 +213,7 @@ endfunction
 command! PP %!python -mjson.tool
 command! PPX %!xmllint --format - 2>/dev/null
 command! PPJ %!js-beautify.js -f -
-nmap <c-space> :noh<cr>
+nmap <silent><c-space> :set hlsearch!<cr>
 
 command! Max call Maximize()
 
