@@ -19,7 +19,7 @@ set window=73
 set guifont=Ttyp0
 
 " Leader key (needs to come first because other binds need it to be so)
-let mapleader = ","
+let mapleader = "\\"
 
 """""""""""""""""""""""""""""""""""""
 "External plugins / Syntax files
@@ -87,6 +87,8 @@ set nowrap
 set guioptions+=c
 "a: Autoselect
 set guioptions-=a
+"e: Gui tabs (ugly in xfce gvim)
+set guioptions-=e
 "m: Menu bar
 set guioptions-=m
 "T: Tool bar
