@@ -16,7 +16,7 @@ set window=73
 "Default <c-o> actually owns and this is useless?
 "map <C-o> :browse confirm edit <Cr>
 
-set guifont=ttyp014:h14
+set guifont=Ttyp0
 
 " Leader key (needs to come first because other binds need it to be so)
 let mapleader = "\\"
@@ -24,10 +24,6 @@ let mapleader = "\\"
 """""""""""""""""""""""""""""""""""""
 "External plugins / Syntax files
 """""""""""""""""""""""""""""""""""""
-"Flake8
-"autocmd BufWritePost *.py call Flake8()
-"let g:flake8_ignore="E501"
-
 "Syntastic
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_flake8_args='--ignore=E501'
@@ -89,7 +85,15 @@ set cpoptions+=I
 set nowrap
 " b = Bottom scroll bar
 " c = Console prompt popups (great for OSX since you can't select options w/ keyboard)
-set guioptions+=bc
+set guioptions+=c
+"a: Autoselect
+set guioptions-=a
+"e: Gui tabs (ugly in xfce gvim)
+set guioptions-=e
+"m: Menu bar
+set guioptions-=m
+"T: Tool bar
+set guioptions-=T
 
 "Folding settings
 let g:xml_syntax_folding = 1
@@ -213,7 +217,8 @@ endfunction
 command! PP %!python -mjson.tool
 command! PPX %!xmllint --format - 2>/dev/null
 command! PPJ %!js-beautify.js -f -
-nmap <silent><c-space> :set hlsearch!<cr>
+nmap <C-Space> :noh<cr>
+inoremap <C-@> <c-space>
 
 command! Max call Maximize()
 

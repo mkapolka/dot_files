@@ -1,3 +1,5 @@
-alias ls='ls -G'
+alias ls='ls -G --color'
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export PATH=/usr/local/bin:$PATH:~/bin
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
