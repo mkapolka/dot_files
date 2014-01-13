@@ -16,7 +16,15 @@ set window=73
 "Default <c-o> actually owns and this is useless?
 "map <C-o> :browse confirm edit <Cr>
 
-set guifont=Ttyp0
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Ttyp0
+  elseif has("gui_macvim")
+    set guifont=Ttyp014:h14
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
 
 " Leader key (needs to come first because other binds need it to be so)
 let mapleader = "\\"
