@@ -1,5 +1,12 @@
+filetype off
+
 "Pathogen
 execute pathogen#infect()
+execute pathogen#helptags()
+
+"filetype plugin indent on
+filetype plugin on
+syntax on
 
 "Gvim specific settings
 version 6.0
@@ -36,6 +43,7 @@ let mapleader = "\\"
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_flake8_args='--ignore=E501'
 let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
 
 command! CheckPy call SyntasticCheckPython()
 function! SyntasticCheckPython()
@@ -44,6 +52,14 @@ function! SyntasticCheckPython()
     SyntasticCheck
     let g:syntastic_python_checkers = old_checkers
 endfunction
+
+" Python-Mode
+" Use syntastic instead
+let g:pymode_lint=0
+let g:pymode_run_bind = '<leader>R'
+let g:pymode_doc_bind='<Leader>d'
+
+set cot-=preview
 
 " Ctrl P
 " Run at vim command line
@@ -56,9 +72,6 @@ let g:ctrlp_working_path_mode = 'ra'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 au BufNewFile,BufRead *.as setf actionscript
-
-"Syntax higlighting rules
-syntax enable
 
 "Sienna Options
 let g:sienna_style='dark'
