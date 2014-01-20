@@ -58,6 +58,7 @@ endfunction
 let g:pymode_lint=0
 let g:pymode_run_bind = '<leader>R'
 let g:pymode_doc_bind='<Leader>d'
+let g:pymode_rope_complete_on_dot=0
 
 set cot-=preview
 
@@ -143,11 +144,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"Quickfix
-nmap qfn :cn<cr>
-nmap qfp :cp<cr>
-nmap qfc :cc<cr>
-
 "Regular vim OK
 vmap <C-Del> "*d
 vmap <S-Del> "*d
@@ -159,30 +155,15 @@ map J gt
 map K gT
 "Little switcheroo inspired by help page (see :h Y)
 map Y y$
-"Windows style ctrl-backspace
-imap <C-BS> <C-W>
-
-"change [[ ]] etc to work less weird (i.e. not only work on the first column)
-map [[ ?{<CR>w99[{
-map ][ /}<CR>b99]}
-map ]] j0[[%/{<CR>
-map [] k$][%?}<CR>
 
 "Ben and Jerry's 'Fatfinger kludge'
 command! W w
 command! E e
 
-"Shift-Delete and backspace work like expected
-imap <S-Delete> <Esc>lcw
-imap <S-Backspace> <Esc>cb
-
 "Ctrl-S save bind
 map <C-s> :w<CR>
 imap <C-s> <Esc>:w<CR>a
 nnoremap <silent><leader>s :w<CR>
-
-"Ctrl-N new bind
-"nmap <C-n> :silent !gvim<Cr>
 
 "Automatic Curly Block filling
 inoremap {      {}<Left>
