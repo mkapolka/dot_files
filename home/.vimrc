@@ -151,8 +151,8 @@ vmap <C-Insert> "*y
 
 "Tabs
 map <C-t> :tabnew<Cr>
-map J gt
-map K gT
+nnoremap J gt
+nnoremap K gT
 "Little switcheroo inspired by help page (see :h Y)
 map Y y$
 
