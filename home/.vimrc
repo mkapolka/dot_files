@@ -1,5 +1,12 @@
+filetype off
+
 "Pathogen
 execute pathogen#infect()
+execute pathogen#helptags()
+
+"filetype plugin indent on
+filetype plugin on
+syntax on
 
 "Gvim specific settings
 version 6.0
@@ -36,6 +43,7 @@ let mapleader = "\\"
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_flake8_args='--ignore=E501'
 let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
 
 command! CheckPy call SyntasticCheckPython()
 function! SyntasticCheckPython()
@@ -44,6 +52,15 @@ function! SyntasticCheckPython()
     SyntasticCheck
     let g:syntastic_python_checkers = old_checkers
 endfunction
+
+" Python-Mode
+" Use syntastic instead
+let g:pymode_lint=0
+let g:pymode_run_bind = '<leader>R'
+let g:pymode_doc_bind='<Leader>d'
+let g:pymode_rope_complete_on_dot=0
+
+set cot-=preview
 
 " Ctrl P
 " Run at vim command line
@@ -56,9 +73,6 @@ let g:ctrlp_working_path_mode = 'ra'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 au BufNewFile,BufRead *.as setf actionscript
-
-"Syntax higlighting rules
-syntax enable
 
 "Sienna Options
 let g:sienna_style='dark'
@@ -130,11 +144,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"Quickfix
-nmap qfn :cn<cr>
-nmap qfp :cp<cr>
-nmap qfc :cc<cr>
-
 "Regular vim OK
 vmap <C-Del> "*d
 vmap <S-Del> "*d
@@ -142,20 +151,14 @@ vmap <C-Insert> "*y
 
 "Tabs
 map <C-t> :tabnew<Cr>
-map J gt
-map K gT
+nnoremap J gt
+nnoremap K gT
 "Little switcheroo inspired by help page (see :h Y)
 map Y y$
-"Windows style ctrl-backspace
-imap <C-BS> <C-W>
 
 "Ben and Jerry's 'Fatfinger kludge'
 command! W w
 command! E e
-
-"Shift-Delete and backspace work like expected
-imap <S-Delete> <Esc>lcw
-imap <S-Backspace> <Esc>cb
 
 "Ctrl-S save bind
 nnoremap <silent><leader>s :w<CR>
