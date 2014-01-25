@@ -149,12 +149,6 @@ map Y y$
 "Windows style ctrl-backspace
 imap <C-BS> <C-W>
 
-"change [[ ]] etc to work less weird (i.e. not only work on the first column)
-map [[ ?{<CR>w99[{
-map ][ /}<CR>b99]}
-map ]] j0[[%/{<CR>
-map [] k$][%?}<CR>
-
 "Ben and Jerry's 'Fatfinger kludge'
 command! W w
 command! E e
@@ -164,12 +158,7 @@ imap <S-Delete> <Esc>lcw
 imap <S-Backspace> <Esc>cb
 
 "Ctrl-S save bind
-map <C-s> :w<CR>
-imap <C-s> <Esc>:w<CR>a
 nnoremap <silent><leader>s :w<CR>
-
-"Ctrl-N new bind
-"nmap <C-n> :silent !gvim<Cr>
 
 "Automatic Curly Block filling
 inoremap {      {}<Left>
@@ -192,9 +181,6 @@ endfunction
 
 nnoremap <silent><Leader>r :call NumberToggle()<CR>
 vnoremap <silent><Leader>r :call NumberToggle()<CR>
-
-"Surround visually selected text in {}
-"vnoremap <C-{> 
 
 "Changes gf to open the highlighted file even if it doesn't exist yet
 map gf :e <cfile><CR>
@@ -222,12 +208,10 @@ endfunction
 
 "inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
-command! PP %!python -mjson.tool
 command! PPX %!xmllint --format - 2>/dev/null
-command! PPJ %!js-beautify.js -f -
-nmap <C-Space> :noh<cr>
-inoremap <C-@> <c-space>
+command! PPJ %!js-beautify -f -i
 
+" Used on OSX because it's a shitty
 command! Max call Maximize()
 
 function! Maximize()
