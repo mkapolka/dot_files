@@ -36,6 +36,9 @@ endif
 " Leader key (needs to come first because other binds need it to be so)
 let mapleader = "\\"
 
+" Swapfile stuff
+set dir=~/.vim/tmp/
+
 """""""""""""""""""""""""""""""""""""
 "External plugins / Syntax files
 """""""""""""""""""""""""""""""""""""
@@ -67,6 +70,11 @@ set cot-=preview
 " :helptags ~/.vim/bundle/ctrlp.vim/doc
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'ra'
+
+augroup twee
+	au! BufRead,BufNewFile *.tw   setfiletype twee 
+    set makeprg=twee_make\ %
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax Highlighting options
@@ -149,6 +157,8 @@ vmap <C-Del> "*d
 vmap <S-Del> "*d
 vmap <C-Insert> "*y
 
+inoremap <silent><C-backspace> <C-w>
+
 "Tabs
 map <C-t> :tabnew<Cr>
 nnoremap J gt
@@ -209,6 +219,8 @@ function! Smart_TabComplete()
   endif
 endfunction
 
+nnoremap <silent><C-Space> :noh<cr>
+
 "inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 command! PPX %!xmllint --format - 2>/dev/null
@@ -221,3 +233,6 @@ function! Maximize()
     set columns=999
     set lines=999
 endfunction
+
+" Make map
+nnoremap <leader>m :mak!<cr>
