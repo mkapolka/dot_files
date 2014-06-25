@@ -1,6 +1,11 @@
 alias rword='shuf /usr/share/dict/words | head -n 1'
 
-alias ls='ls --color -G'
+unamestr=$(uname)
+if [[ "$unamestr" == 'Darwin' ]]; then
+    alias ls='ls -G'
+else
+    alias ls='ls --color'
+fi
 export PATH=$PATH:~/bin:
 export PATH=/usr/local/bin:$PATH:~/bin
 
