@@ -117,6 +117,11 @@ set guioptions-=m
 "T: Tool bar
 set guioptions-=T
 
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+
 "Folding settings
 let g:xml_syntax_folding = 1
 set foldlevel=1
@@ -133,6 +138,15 @@ set clipboard="*
 
 "Ignore .pyc files when expanding wildcards
 set wildignore+=*.pyc
+
+" Ignore .pyc files in netrw
+let g:netrw_list_hide='.*\.pyc$'
+
+" Use github flavored markdown for gmd files
+"oaugroup markdown
+    "au!
+    "au BufNewFile,BufRead *.gmd, setlocal filetype=ghmarkdown
+"augroup END
 
 """""""""""""""""""""""""""""
 " BINDSBINDSBINDSBINDS
@@ -164,6 +178,9 @@ command! E e
 map <C-s> :w<CR>
 imap <C-s> <Esc>:w<CR>a
 nnoremap <silent><leader>s :w<CR>
+
+" Ctrl-S sort bind
+vnoremap <silent><leader>s :sort<cr>
 
 "Automatic Curly Block filling
 inoremap {      {}<Left>
@@ -217,8 +234,10 @@ endfunction
 "inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 command! PP %!python -mjson.tool
-command! PPX %!xmllint --format - 2>/dev/null
-command! PPJ %!js-beautify.js -f -
+command! -range PPX <line1>,<line2>!xmllint --format - 2>/dev/null
+command! -range PPH <line1>,<line2>!export PYTHONIOENCODING=utf-8; python -c "import bs4; import sys; import codecs; print bs4.BeautifulSoup(sys.stdin.read()).prettify()"
+" command! PPH %!xmllint --format --html --htmlout - 2>/dev/null
+command! -range PPJ <line1>,<line2>!js-beautify.js -f -
 nmap <C-Space> :noh<cr>
 inoremap <C-@> <c-space>
 
@@ -228,3 +247,32 @@ function! Maximize()
     set columns=999
     set lines=999
 endfunction
+
+" AGOGO Specific binds
+" Removes EOL at EOF
+function! Chomp()
+    let old_eol = &eol
+    let old_bin = &binary
+    set noeol
+    set binary
+    %!perl -pe "chomp if eof"
+    w
+    let &eol=old_eol
+    let &binary=old_bin
+endfunction
+command! Chomp call Chomp()
+
+command! AGOGOTest !cd ~/agogo/scraper;python -m unittest discover -s %:p:h -t ~/agogo/scraper
+command! -nargs=1 Redir call Redir('<args>')
+function! Redir(cmd)
+    redir @r
+    exec a:cmd
+    redir END
+    put r
+endfunction
+nnoremap <silent><leader>t :AGOGOTest<cr>
+
+" URL decode
+command! -range URLD <line1>,<line2>!python -c "import urllib; import sys; sys.stdout.write(urllib.unquote(sys.stdin.read()))"
+
+nnoremap <leader>c :.!curl -L -s "<C-R>*"<cr>
