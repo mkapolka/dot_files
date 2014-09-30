@@ -36,6 +36,9 @@ endif
 " Leader key (needs to come first because other binds need it to be so)
 let mapleader = "\\"
 
+" Swapfile stuff
+set dir=~/.vim/tmp/
+
 """""""""""""""""""""""""""""""""""""
 "External plugins / Syntax files
 """""""""""""""""""""""""""""""""""""
@@ -67,6 +70,11 @@ set cot-=preview
 " :helptags ~/.vim/bundle/ctrlp.vim/doc
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'ra'
+
+augroup twee
+	au! BufRead,BufNewFile *.tw   setfiletype twee 
+    set makeprg=twee_make\ %
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax Highlighting options
@@ -163,6 +171,8 @@ vmap <C-Del> "*d
 vmap <S-Del> "*d
 vmap <C-Insert> "*y
 
+inoremap <silent><C-backspace> <C-w>
+
 "Tabs
 map <C-t> :tabnew<Cr>
 nnoremap J gt
@@ -175,8 +185,6 @@ command! W w
 command! E e
 
 "Ctrl-S save bind
-map <C-s> :w<CR>
-imap <C-s> <Esc>:w<CR>a
 nnoremap <silent><leader>s :w<CR>
 
 " Ctrl-S sort bind
@@ -204,9 +212,6 @@ endfunction
 nnoremap <silent><Leader>r :call NumberToggle()<CR>
 vnoremap <silent><Leader>r :call NumberToggle()<CR>
 
-"Surround visually selected text in {}
-"vnoremap <C-{> 
-
 "Changes gf to open the highlighted file even if it doesn't exist yet
 map gf :e <cfile><CR>
 
@@ -231,6 +236,8 @@ function! Smart_TabComplete()
   endif
 endfunction
 
+nnoremap <silent><C-Space> :noh<cr>
+
 "inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 command! PP %!python -mjson.tool
@@ -241,6 +248,7 @@ command! -range PPJ <line1>,<line2>!js-beautify.js -f -
 nmap <C-Space> :noh<cr>
 inoremap <C-@> <c-space>
 
+" Used on OSX because it's a shitty
 command! Max call Maximize()
 
 function! Maximize()
@@ -276,3 +284,6 @@ nnoremap <silent><leader>t :AGOGOTest<cr>
 command! -range URLD <line1>,<line2>!python -c "import urllib; import sys; sys.stdout.write(urllib.unquote(sys.stdin.read()))"
 
 nnoremap <leader>c :.!curl -L -s "<C-R>*"<cr>
+
+" Make map
+nnoremap <leader>m :mak!<cr>
