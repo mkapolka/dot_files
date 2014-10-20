@@ -11,8 +11,11 @@ export PATH=/usr/local/bin:$PATH:~/bin
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
+export EDITOR=vim
+
 alias gs='git status'
 alias gl='git log'
 alias gb='git branch'
 alias gc='git checkout'
 alias gau='git add -u'
+source /opt/boxen/env.sh

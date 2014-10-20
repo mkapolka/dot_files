@@ -44,7 +44,7 @@ set dir=~/.vim/tmp/
 """""""""""""""""""""""""""""""""""""
 "Syntastic
 let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--ignore=E501'
+let g:syntastic_python_flake8_args='--select=F'
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
 
@@ -62,6 +62,7 @@ let g:pymode_lint=0
 let g:pymode_run_bind = '<leader>R'
 let g:pymode_doc_bind='<Leader>d'
 let g:pymode_rope_complete_on_dot=0
+let g:pymode_trim_whitespaces = 0
 
 set cot-=preview
 
@@ -102,9 +103,9 @@ set showcmd
 
 set hlsearch
 "Indent handling
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 set autoindent
 "smart indent not smart enough - management
