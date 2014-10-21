@@ -1,4 +1,4 @@
-alias rword='shuf /usr/share/dict/words | head -n 1'
+alias rword='gshuf /usr/share/dict/words | head -n 1'
 
 unamestr=$(uname)
 if [[ "$unamestr" == 'Darwin' ]]; then
@@ -16,3 +16,7 @@ alias gl='git log'
 alias gb='git branch'
 alias gc='git checkout'
 alias gau='git add -u'
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh

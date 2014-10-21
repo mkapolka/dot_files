@@ -1,4 +1,4 @@
-filetype off
+"filetype off
 
 "Pathogen
 execute pathogen#infect()
@@ -236,3 +236,7 @@ endfunction
 
 " Make map
 nnoremap <leader>m :mak!<cr>
+
+nnoremap <leader>c !!curl -s -A firefox <c-r>*<cr>
+
+command! URLD %!python -c "import urllib; import sys; print urllib.unquote(sys.stdin.read()).decode('utf-8')"
