@@ -44,7 +44,7 @@ set dir=~/.vim/tmp/
 """""""""""""""""""""""""""""""""""""
 "Syntastic
 let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--select=F'
+let g:syntastic_python_flake8_args='--select=F,E901'
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
 
@@ -62,7 +62,7 @@ let g:pymode_lint=0
 let g:pymode_run_bind = '<leader>R'
 let g:pymode_doc_bind='<Leader>d'
 let g:pymode_rope_complete_on_dot=0
-let g:pymode_trim_whitespaces = 0
+let g:pymode_trim_whitespaces=0
 
 set cot-=preview
 
@@ -71,6 +71,8 @@ set cot-=preview
 " :helptags ~/.vim/bundle/ctrlp.vim/doc
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_max_depth = 40
+let g:ctrlp_max_files = 10000
 
 augroup twee
 	au! BufRead,BufNewFile *.tw   setfiletype twee 
@@ -245,7 +247,7 @@ command! PP %!python -mjson.tool
 command! -range PPX <line1>,<line2>!xmllint --format - 2>/dev/null
 command! -range PPH <line1>,<line2>!export PYTHONIOENCODING=utf-8; python -c "import bs4; import sys; import codecs; print bs4.BeautifulSoup(sys.stdin.read()).prettify()"
 " command! PPH %!xmllint --format --html --htmlout - 2>/dev/null
-command! -range PPJ <line1>,<line2>!js-beautify.js -f -
+command! -range PPJ <line1>,<line2>!js-beautify -i
 nmap <C-Space> :noh<cr>
 inoremap <C-@> <c-space>
 
