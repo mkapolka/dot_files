@@ -72,7 +72,7 @@ set cot-=preview
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_max_depth = 40
-let g:ctrlp_max_files = 10000
+let g:ctrlp_max_files = 20000
 
 augroup twee
 	au! BufRead,BufNewFile *.tw   setfiletype twee 
@@ -247,7 +247,7 @@ command! PP %!python -mjson.tool
 command! -range PPX <line1>,<line2>!xmllint --format - 2>/dev/null
 command! -range PPH <line1>,<line2>!export PYTHONIOENCODING=utf-8; python -c "import bs4; import sys; import codecs; print bs4.BeautifulSoup(sys.stdin.read()).prettify()"
 " command! PPH %!xmllint --format --html --htmlout - 2>/dev/null
-command! -range PPJ <line1>,<line2>!js-beautify -i
+command! -range PPJ <line1>,<line2>!js-beautify -f -
 nmap <C-Space> :noh<cr>
 inoremap <C-@> <c-space>
 
