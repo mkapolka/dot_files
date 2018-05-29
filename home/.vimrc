@@ -98,7 +98,8 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-" set autoindent
+set nocindent
+    " set autoindent
 "smart indent not smart enough - management
 "set smartindent 
 
