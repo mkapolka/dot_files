@@ -1,0 +1,8 @@
+noremap u <c-u>
+noremap d <c-d>
+noremap J gt
+noremap K gT
+noremap x d
+noremap X D
+noremap U u
+set hintchars=hjklasdfgyuiopqwertnmzxcvb

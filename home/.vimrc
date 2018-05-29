@@ -1,15 +1,11 @@
 "filetype off
 
-"Pathogen
-execute pathogen#infect()
-execute pathogen#helptags()
-
 "filetype plugin indent on
 filetype plugin on
 syntax on
 
 "Gvim specific settings
-version 6.0
+version 8.0
 if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
@@ -42,39 +38,35 @@ set dir=~/.vim/tmp/
 """""""""""""""""""""""""""""""""""""
 "External plugins / Syntax files
 """""""""""""""""""""""""""""""""""""
-"Syntastic
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--ignore=E501'
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
+call plug#begin('~/.vim/plugged')
+    Plug '/usr/local/opt/fzf'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
+    Plug 'flazz/vim-colorschemes'
+    " Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'tpope/vim-surround'
+call plug#end()
 
-command! CheckPy call SyntasticCheckPython()
-function! SyntasticCheckPython()
-    let old_checkers = g:syntastic_python_checkers
-    let g:syntastic_python_checkers = ['flake8', 'pylint', 'python']
-    SyntasticCheck
-    let g:syntastic_python_checkers = old_checkers
-endfunction
-
-" Python-Mode
-" Use syntastic instead
-let g:pymode_lint=0
-let g:pymode_run_bind = '<leader>R'
-let g:pymode_doc_bind='<Leader>d'
-let g:pymode_rope_complete_on_dot=0
+let $FZF_DEFAULT_COMMAND='find * -type f'
 
 set cot-=preview
 
 " Ctrl P
 " Run at vim command line
 " :helptags ~/.vim/bundle/ctrlp.vim/doc
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_working_path_mode = 'ra'
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
+" let g:ctrlp_working_path_mode = 'ra'
+nnoremap <silent><C-p> :Files<cr>
+
+nnoremap <leader>b Oimport pdb; pdb.set_trace()<esc>
 
 augroup twee
-	au! BufRead,BufNewFile *.tw   setfiletype twee 
+    au! BufRead,BufNewFile *.tw   setfiletype twee 
     set makeprg=twee_make\ %
 augroup END
+
+" NetRW
+let g:netrw_list_hide= '.*\.meta$'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax Highlighting options
@@ -106,7 +98,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set autoindent
+" set autoindent
 "smart indent not smart enough - management
 "set smartindent 
 

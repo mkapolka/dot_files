@@ -15,8 +15,10 @@ alias gs='git status'
 alias gl='git log'
 alias gb='git branch'
 alias gc='git checkout'
-alias gau='git add -u'
+alias gau='git add -u :/'
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
