@@ -1,6 +1,7 @@
 "filetype off
 
 "filetype plugin indent on
+filetype plugin indent on
 filetype plugin on
 syntax on
 
@@ -45,9 +46,20 @@ call plug#begin('~/.vim/plugged')
     Plug 'flazz/vim-colorschemes'
     " Plug 'ctrlpvim/ctrlp.vim'
     Plug 'tpope/vim-surround'
+    Plug 'airblade/vim-rooter'
 call plug#end()
 
-let $FZF_DEFAULT_COMMAND='find * -type f'
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel')[:-2]
+endfunction
+
+command! ProjectFiles execute 'Files' s:find_git_root()
+
+let $FZF_DEFAULT_COMMAND=''
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
 set cot-=preview
 
@@ -66,7 +78,7 @@ augroup twee
 augroup END
 
 " NetRW
-let g:netrw_list_hide= '.*\.meta$'
+let g:netrw_list_hide= '.*\.meta$,.*\.pyc'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax Highlighting options
@@ -97,8 +109,10 @@ set hlsearch
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
-set nocindent
+"set expandtab
+"set nocindent
+"set noautoindent
+"set nosmartindent
     " set autoindent
 "smart indent not smart enough - management
 "set smartindent 
@@ -127,7 +141,7 @@ set foldnestmax=2
 set splitbelow
 set splitright
 
-set autochdir
+" set autochdir
 
 "Sets the clipboard buffer to the unnamed (default) buffer
 set clipboard="*
